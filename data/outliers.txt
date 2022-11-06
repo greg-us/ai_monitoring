@@ -1,0 +1,3 @@
+This line should be flagged as an outlier as it is never seen in log files used to create the dataset
+[Fri Dec 16 02:25:55 2005] [error] [client 1.2.3.4] Client sent malformed Host header
+[Tue Mar 08 10:34:31 2005] [error] (11)Resource temporarily unavailable: fork: Unable to fork new process
