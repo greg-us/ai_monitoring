@@ -8,7 +8,7 @@ import os
 import sys
 import getopt
 
-from Model import Autoencoder
+from Model import Autoencoder, TOKEN_LENGTH, EMBEDDING_SIZE
 
 
 def count_logfile_line(fname):
@@ -32,16 +32,16 @@ def prepare(tokenizer, samples):
         sentences.append(sentence)
         embeddings.append([])
         for y, token in enumerate(sentence):
-            if y < 64:
-                embeddings[i].append(np.array(token.vector[:256]))
-        for _w in range(64-len(embeddings[i])):
-            embeddings[i].append(np.zeros(256))
+            if y < TOKEN_LENGTH:
+                embeddings[i].append(np.array(token.vector[:EMBEDDING_SIZE]))
+        for _w in range(TOKEN_LENGTH-len(embeddings[i])):
+            embeddings[i].append(np.zeros(EMBEDDING_SIZE))
 
     embeddings = np.array(embeddings)
 
     return torch.from_numpy(
                 embeddings.reshape(
-                    [len(samples), 1, 64, 256]
+                    [len(samples), 1, TOKEN_LENGTH, EMBEDDING_SIZE]
                 )).double(), samples, sentences
 
 
