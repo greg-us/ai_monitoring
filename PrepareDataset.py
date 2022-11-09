@@ -33,11 +33,13 @@ def loadDataset(fileNames):
     return list(set(fileContent))
 
 # Initializing Dataset
-#For retraining
-filesToRead = ['data/standard.txt', 'data/dataset.txt']
-#For initial training
-#filesToRead = ['logs/error.log', 'logs/access.log']
-print('-Loading Dataset')
+if os.path.isfile('data/dataset.txt'):
+    # For retraining
+    filesToRead = ['data/standard.txt', 'data/dataset.txt']
+else:
+    # For initial training
+    filesToRead = ['logs/error.log', 'logs/access.log']
+print('-Loading Dataset: ', filesToRead)
 dataset = loadDataset(filesToRead)
 print('-Loaded ', len(dataset), ' items')
 

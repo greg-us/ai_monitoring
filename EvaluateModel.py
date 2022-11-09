@@ -80,7 +80,7 @@ model.to(device)
 print('-Validating')
 
 # Validate loss
-val_size = 128
+val_size = len(dataset)/10
 val_loss = 0.0
 samples = batch(tokenizer, dataset, val_size, EMBEDDING_SIZE)
 samples = samples.to(device)
